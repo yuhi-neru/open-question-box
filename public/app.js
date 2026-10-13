@@ -41,7 +41,6 @@ async function setupTurnstile() {
       });
       await turnstileLoad;
     }
-    if (typeof window.turnstile.ready === 'function') await new Promise(resolve => window.turnstile.ready(resolve));
     if (document.querySelector('#turnstile-widget')) state.widget = window.turnstile.render('#turnstile-widget', { sitekey: state.profile.turnstile_site_key, action: 'submit', callback: token => { state.turnstileToken = token; }, 'expired-callback': () => { state.turnstileToken = ''; }, 'error-callback': () => { state.turnstileToken = ''; } });
   } catch (error) { console.warn('Turnstile initialization:', error.message || 'unavailable'); const el = document.querySelector('.form-error'); if (el) el.innerHTML = '<p class="error">送信確認を読み込めません。ページを再読み込みしてください。</p>'; }
 }
