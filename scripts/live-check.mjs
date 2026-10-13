@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-const origin = process.argv.slice(2).find(arg => !arg.startsWith('--')) || 'https://open-question-box.vrc-ranking-board.workers.dev';
-if (!['https://open-question-box.vrc-ranking-board.workers.dev', 'http://127.0.0.1:8788'].includes(origin)) throw new Error('Unexpected origin');
+const origin = process.argv.slice(2).find(arg => !arg.startsWith('--')) || 'https://open-question-box.pages.dev';
+if (!['https://open-question-box.pages.dev', 'http://127.0.0.1:8788'].includes(origin)) throw new Error('Unexpected origin');
 const vars = Object.fromEntries((await readFile('.dev.vars', 'utf8')).trim().split('\n').map(line => { const at = line.indexOf('='); return [line.slice(0, at), line.slice(at + 1)]; }));
 const login = await fetch(origin + '/api/v1/auth/login', { method: 'POST', headers: { Origin: origin, 'Content-Type': 'application/json' }, body: JSON.stringify({ secret: vars.ADMIN_SECRET }) });
 assert.equal(login.status, 200);

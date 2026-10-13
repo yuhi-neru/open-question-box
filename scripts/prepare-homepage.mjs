@@ -9,7 +9,7 @@ const project = {
   description: '質問も、感想も、ちょっとしたひとことも。登録なしで気軽に送れて、APIでAIやアプリにもつなげられる質問箱。',
   detail: '誰でも送れる。AIにも届く。誰でも運営できる。ゆうひねるへの匿名メッセージを送れる、MITライセンスのオープンソース質問箱です。受信者が選んだ質問と回答だけを公開。API・署名付きWebhook・サイトへの埋め込み・データの移行に対応し、自分のCloudflareでも運営できます。公開サービスはゆうひねるの質問箱で、他の人はセルフホストで利用できます。JPYC投げ銭とAPI課金は準備中です。',
   features: ['匿名・登録不要の質問とフィードバック', 'API・Webhook・埋め込みフォーム', 'MITライセンス・セルフホスト・データ移行'],
-  url: 'https://open-question-box.vrc-ranking-board.workers.dev/', repo: 'https://github.com/yuhi-neru/open-question-box', status: '公開中', art: 'question', tags: ['Open source', 'API', 'Web app']
+  url: 'https://open-question-box.pages.dev/', repo: 'https://github.com/yuhi-neru/open-question-box', status: '公開中', art: 'question', tags: ['Open source', 'API', 'Web app']
 };
 const at = projects.findIndex(p => p.id === project.id);
 if (at < 0) projects.push(project); else projects[at] = project;

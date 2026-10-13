@@ -8,5 +8,5 @@ const secrets = { ADMIN_SECRET: vars.ADMIN_SECRET, RATE_LIMIT_SECRET: vars.RATE_
 const result = spawnSync(process.execPath, ['node_modules/wrangler/bin/wrangler.js', 'secret', 'bulk'], { input: JSON.stringify(secrets), stdio: ['pipe', 'pipe', 'pipe'], encoding: 'utf8' });
 // Wrangler only prints binding names, but keep its output private defensively.
 if (result.status !== 0) throw new Error(`Secret configuration failed (${result.status}); check Cloudflare permissions.`);
-await writeFile('.production-admin.txt', `Open Question Box\n管理画面: https://open-question-box.vrc-ranking-board.workers.dev/admin\n管理キー: ${vars.ADMIN_SECRET}\n\nこのファイルは秘密情報です。GitHubや公開ページに貼らないでください。\n`);
+await writeFile('.production-admin.txt', `Open Question Box\n管理画面: https://open-question-box.pages.dev/admin\n管理キー: ${vars.ADMIN_SECRET}\n\nこのファイルは秘密情報です。GitHubや公開ページに貼らないでください。\n`);
 console.log('Production secrets configured; owner key saved in ignored .production-admin.txt');

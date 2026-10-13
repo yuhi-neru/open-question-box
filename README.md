@@ -4,7 +4,7 @@
 
 匿名の質問・感想・要望・バグ報告を受け取れる、MITライセンスの質問箱です。AIを使わなくても使えます。API・Webhook・埋め込みフォームで自由に接続でき、自分のCloudflareアカウントでも運営できます。
 
-公開サービス: https://open-question-box.vrc-ranking-board.workers.dev/
+公開サービス: https://open-question-box.pages.dev/
 
 ## MVPの範囲
 
@@ -23,6 +23,10 @@
 ## 構成
 
 TypeScriptのCloudflare Worker + D1（SQLite）+ Workers Static Assets。フロントは標準HTML/CSS/JavaScriptです。外部AIや有料ストレージ、メール、ウォレットは必要ありません。アプリの実行時依存はCloudflareだけです。設計と段階的拡張は [docs/design.md](docs/design.md)、決済の確認事項は [docs/payments.md](docs/payments.md) を参照してください。
+
+作者の公開URLは独立した `open-question-box.pages.dev` です。`hosting/` の小さなPages Functionから、Service bindingで質問箱専用Workerへ転送します。DB・秘密情報・定期処理はこのWorkerに保持し、公開URLをそのまま渡すため認証やTurnstileも新ドメインで検証されます。アカウント共通のworkers.devサブドメイン名が他サービス名でも、アプリやDBが競合することはありません。
+
+公開URL用Pagesの更新は `npm run deploy:pages`、アプリ本体は `npm run deploy` です。セルフホストではWorker URLだけでも使えます。専用の `名前.pages.dev` も使う場合は、`hosting/wrangler.jsonc` のプロジェクト名と接続先Workerを自分の環境に変更し、専用Pagesプロジェクトを作成・デプロイします。Turnstileの許可ドメインも更新してください。Pages FunctionsはWorkersと同じ無料リクエスト枠を使います。
 
 ## ローカルで動かす
 

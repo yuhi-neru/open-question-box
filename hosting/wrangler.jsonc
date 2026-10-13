@@ -1,0 +1,7 @@
+{
+  "$schema": "../node_modules/wrangler/config-schema.json",
+  "name": "open-question-box",
+  "pages_build_output_dir": "pages",
+  "compatibility_date": "2026-10-13",
+  "services": [{ "binding": "BACKEND", "service": "open-question-box" }]
+}
