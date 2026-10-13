@@ -1,0 +1,8 @@
+# Copy to .dev.vars and replace both values with separate random 32+ character secrets.
+ADMIN_SECRET=
+RATE_LIMIT_SECRET=
+# Local development only. Configure Turnstile before exposing to the internet.
+ALLOW_UNPROTECTED_SUBMISSIONS=true
+TURNSTILE_SECRET_KEY=
+# Optional, operator-controlled HTTPS endpoint. Never accept this URL from anonymous users.
+WEBHOOK_SECRET=

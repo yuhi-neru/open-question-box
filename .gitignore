@@ -1,0 +1,12 @@
+node_modules/
+.wrangler/
+dist/
+.dev.vars
+.production-admin.txt
+.production-secrets.json
+backup.sql
+homepage-update/
+.env*
+!.env.example
+playwright-report/
+test-results/

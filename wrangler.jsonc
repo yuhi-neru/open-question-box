@@ -1,0 +1,27 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "open-question-box",
+  "workers_dev": true,
+  "preview_urls": false,
+  "account_id": "138e7a76a3baf38bf2ac18267179d2c8",
+  "main": "src/worker.ts",
+  // Cloudflare validates this date in UTC (2026-10-14 JST is still 2026-10-13 UTC).
+  "compatibility_date": "2026-10-13",
+  "assets": { "directory": "public", "binding": "ASSETS", "run_worker_first": true, "html_handling": "none" },
+  "d1_databases": [{
+    "binding": "DB", "database_name": "open-question-box",
+    "database_id": "aaec530e-d6a2-44f2-a7b0-b5fa86fdcd5b",
+    "migrations_dir": "migrations"
+  }],
+  "vars": {
+    "ALLOW_UNPROTECTED_SUBMISSIONS": "false",
+    "TURNSTILE_SITE_KEY": "0x4AAAAAAFWBDL_mk2nh8vlO",
+    "WEBHOOK_URL": ""
+  },
+  "triggers": { "crons": ["*/5 * * * *"] },
+  "observability": {
+    "enabled": true,
+    "logs": { "enabled": true, "invocation_logs": false },
+    "traces": { "enabled": true, "head_sampling_rate": 0.01 }
+  }
+}

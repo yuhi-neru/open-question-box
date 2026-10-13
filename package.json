@@ -1,0 +1,22 @@
+{
+  "name": "open-question-box",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev --ip 127.0.0.1",
+    "db:migrate": "wrangler d1 migrations apply DB --local",
+    "types": "wrangler types --strict-vars false",
+    "check": "tsc --noEmit",
+    "test": "node --test tests/integration.test.mjs",
+    "build": "wrangler deploy --dry-run --outdir dist",
+    "deploy": "wrangler deploy",
+    "api:generate": "node scripts/build-openapi.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "26.6.5",
+    "miniflare": "5.20261006.2-beta",
+    "typescript": "7.0.2",
+    "wrangler": "4.150.0"
+  }
+}

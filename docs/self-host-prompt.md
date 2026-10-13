@@ -1,0 +1,15 @@
+# AIセットアッププロンプト
+
+以下を、自分のPCで動くAIコーディングエージェントに渡してください。
+
+---
+
+Open Question Boxを、私自身のCloudflareアカウントのWorkers Freeでセルフホストしてください。GitHubの https://github.com/yuhi-neru/open-question-box を取得し、READMEを読んで進めてください。
+
+依存をロックファイルから取得し、私のCloudflareアカウントと無料プランを確認してください。リポジトリに含まれる作者のaccount_id、database_id、Turnstileサイトキーを使わず、私専用のWorker名・D1・Turnstileを設定してください。既存データベースを変更しないでください。有料プラン・有料AI・決済を有効化しないでください。
+
+ADMIN_SECRETとRATE_LIMIT_SECRETを別々に暗号学的ランダムな32文字以上で生成し、私だけが読める場所へ保存してください。チャット、コマンド引数、Git、公開HTMLへ秘密を出力しないでください。Wrangler secretsで設定し、Turnstile secretも同様に扱ってください。秘密鍵や資金を預かる処理を作らないでください。
+
+専用D1にmigrationsを適用し、types/check/build/testを実施してください。公開ドメインをTurnstileに登録し、ALLOW_UNPROTECTED_SUBMISSIONS=falseで公開してください。匿名送信・非公開受信・回答・明示的公開・削除・APIキーの権限と失効を確認してください。動作確認のメッセージは削除してください。
+
+公開URLと管理画面URL、秘密を保存した私専用ファイルの場所、データの書き出し方法、無料枠の限界を案内してください。JPYCと課金は準備中のままにし、必要でない機能を増やさないでください。
