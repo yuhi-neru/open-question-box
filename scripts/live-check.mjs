@@ -14,6 +14,18 @@ if (process.argv.includes('--profile')) {
 for (const path of ['/', '/admin', '/embed', '/privacy', '/openapi.json', '/api/v1/health', '/api/v1/profile', '/api/v1/answers']) assert.equal((await fetch(origin + path, { redirect: 'manual' })).status, 200, path);
 assert.equal((await fetch(origin + '/api/v1/messages')).status, 401);
 const list = await fetch(origin + '/api/v1/messages', { headers }); assert.equal(list.status, 200);
+if (process.argv.includes('--cleanup-test')) {
+  const marker = '公開前の動作確認（この投稿は確認後に削除します）';
+  const found = (await list.json()).data.filter(m => m.body === marker);
+  for (const m of found) {
+    const answer = await fetch(origin + '/api/v1/messages/' + m.id, { method: 'PATCH', headers, body: JSON.stringify({ answer: '本番の匿名送信と非公開回答を確認しました。', published: false }) });
+    assert.equal(answer.status, 200);
+    const published = await (await fetch(origin + '/api/v1/answers')).json();
+    assert.ok(!published.data.some(a => a.id === m.id));
+    assert.equal((await fetch(origin + '/api/v1/messages/' + m.id, { method: 'DELETE', headers })).status, 200);
+  }
+  console.log('Verified and removed ' + found.length + ' explicitly marked release-test messages.');
+}
 const key = await fetch(origin + '/api/v1/tokens', { method: 'POST', headers, body: JSON.stringify({ name: 'Temporary release validation', scope: 'read' }) }); assert.equal(key.status, 201);
 const issued = await key.json();
 try {
